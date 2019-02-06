@@ -4,10 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Issue;
+use GuzzleHttp\Client;
+use Session;
 use Auth;
 
 class IssueController extends Controller
 {
+    private $client;
+
+    public function __construct ()
+    {
+
+        $this->client = new Client;
+    }
 
     /**
      * Display a listing of the resource.
@@ -37,11 +46,23 @@ class IssueController extends Controller
      */
     public function store(Request $request)
     {
+        
         Issue::create([
             'scooter_id' => $request->scooter_id,
             'body' => $request->body,
             'user_id' => Auth::id()
         ]);
+
+        // Pay DOV
+        $token = Session::get('access_token');
+        $response = $this->client->post(env('DOVU_API_URL') . '/api/reward', [
+            'headers' => ['Authorization' => 'Bearer '.$token],
+            'form_params' => [
+                'amount' => 10
+            ]
+        ]);
+        return "Thanks";
+
     }
 
     /**
