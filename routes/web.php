@@ -19,8 +19,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/wallet', 'DovuController@wallet');
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/wallet', 'DovuController@wallet');
+    Route::get('/callback', 'DovuController@callback');
+    Route::resource('/issue', 'IssueController');
+});
 
-Route::get('/callback', 'DovuController@callback');
-
-Route::resource('/issue', 'IssueController');
