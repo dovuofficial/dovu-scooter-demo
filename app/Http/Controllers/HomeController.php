@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
 use App\Services\DovuAuthorizationService;
-use GuzzleHttp\Client;
 
 class HomeController extends Controller
 {
