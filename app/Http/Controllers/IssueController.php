@@ -52,7 +52,7 @@ class IssueController extends Controller
         ]);
 
         // Pay DOV
-        $token = \Auth::user()->dovu_user_token;
+        $token = \Auth::user()->dovu->token;
         $response = $this->client->post(env('DOVU_API_URL') . '/api/reward', [
             'headers' => ['Authorization' => 'Bearer '.$token],
             'form_params' => [
