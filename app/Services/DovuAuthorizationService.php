@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\User;
+use App\DovuToken;
 use GuzzleHttp\Client;
 use Illuminate\Http\Response;
 
@@ -32,14 +33,15 @@ class DovuAuthorizationService {
     }
 
     /**
-    * Retrieve an access code after a successful login with the DOVU API
+    * Get an access code after a successful login with the DOVU API
     * the auth code is used to retrived an access token where the service
     * will have permission to deliver actions based on the proposed scope
     * of the partner app.
     *
     * @param string authorization code from the login request from DOVU
+    * @return string OAuth access token to be generated from code.
     **/
-    public function retrieveAccessToken(string $auth_code)
+    public function requestAccessToken(string $auth_code)
     {
         $http = new Client;
         $response = $http->post(config('dovu.api_url') . '/oauth/token', [
@@ -58,6 +60,25 @@ class DovuAuthorizationService {
     }
 
     /**
+    * Create a link from a user to a newly created DOVU access_token. The
+    * responibility of persistance have been separated from requestAccessToken
+    * as there could be alternative methods of storing these tokens.
+    *
+    * @param string user_id or reference to link to the DOVU token
+    * @param string access token created via DOVU
+    * @return \App\DovuToken reference to the newly created DOVU reference.
+    **/
+    public function createDovuTokenLink(string $user_id, string $token)
+    {
+        // error_log($token);
+
+        return DovuToken::updateOrCreate(
+            [ 'user_id' => $user_id ],
+            [ 'token' => $token ]
+        );
+    }
+
+    /**
     * Ensure that a given token connected to an third party app user is
     * valid and can correctly link to the DOVU ecosystem.
     *
@@ -65,9 +86,7 @@ class DovuAuthorizationService {
     **/
     public function validateToken(User $user)
     {
-        $dovu_token = $user->dovu_user_token;
-
-        if (!$dovu_token) {
+        if (!$user->dovu) {
             return false;
         }
 
@@ -78,7 +97,7 @@ class DovuAuthorizationService {
             'http_errors' => false,
             'headers' => [
                 'Accept' => 'application/json',
-                'Authorization' => 'Bearer ' . $dovu_token,
+                'Authorization' => 'Bearer ' . $user->dovu->token,
             ],
         ]);
 
