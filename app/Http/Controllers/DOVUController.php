@@ -30,10 +30,11 @@ class DovuController extends Controller
 
     public function callback(Request $request)
     {
-        $access_token = $this->dovu_service->retrieveAccessToken($request->code);
+        $user = \Auth::user();
+        $dovu = $this->dovu_service;
+        $token = $dovu->requestAccessToken($request->code);
 
-        $user = \Auth::User();
-        $user->saveDovuUserToken($access_token);
+        $dovu->createDovuTokenLink($user->id, $token);
 
         return redirect('/issue/create');
     }
