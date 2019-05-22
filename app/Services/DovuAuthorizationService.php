@@ -25,7 +25,7 @@ class DovuAuthorizationService {
             'client_id' => config('dovu.client_id'),
             'redirect_uri' => config('dovu.app_callback'),
             'response_type' => 'code',
-            'scope' => 'reward' //reward, redeem, notification
+            'scope' => config('dovu.app_scopes'),
         ]);
 
         return config('dovu.api_url') . '/oauth/authorize?' . $query;

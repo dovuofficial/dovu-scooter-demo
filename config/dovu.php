@@ -31,6 +31,24 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Client App Scopes
+    |--------------------------------------------------------------------------
+    |
+    | Declare the scopes (permissions) that are needed for this app to deliver
+    | the required functionality.
+    |
+    | The default is "reward" which allows a user to be rewarded to their wallet
+    | through the app.
+    |
+    | The other scopes are redeem and notification.
+    |   - Redeem allows a user to redeem services and products through the app.
+    |   - Notifications (in-development) allows app to send notifications to the wallet
+    */
+
+    'app_scopes' => env('DOVU_API_CLIENT_SCOPES', 'reward'),
+
+    /*
+    |--------------------------------------------------------------------------
     | DOVU API Client Id
     |--------------------------------------------------------------------------
     |
