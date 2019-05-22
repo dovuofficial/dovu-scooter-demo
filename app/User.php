@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\DovuToken;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -28,7 +29,7 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function saveDovuUserToken($token) {
-        $this->update([ 'dovu_user_token' => $token ]);
+    public function dovu() {
+        return $this->hasOne(DovuToken::class);
     }
 }
