@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Issue;
 use GuzzleHttp\Client;
-use Session;
 use Auth;
 
 class IssueController extends Controller
@@ -46,7 +45,6 @@ class IssueController extends Controller
      */
     public function store(Request $request)
     {
-        
         Issue::create([
             'scooter_id' => $request->scooter_id,
             'body' => $request->body,
@@ -54,7 +52,7 @@ class IssueController extends Controller
         ]);
 
         // Pay DOV
-        $token = Session::get('access_token');
+        $token = \Auth::user()->dovu->token;
         $response = $this->client->post(env('DOVU_API_URL') . '/api/reward', [
             'headers' => ['Authorization' => 'Bearer '.$token],
             'form_params' => [

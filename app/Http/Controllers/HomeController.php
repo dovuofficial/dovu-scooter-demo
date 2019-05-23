@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Services\DovuAuthorizationService;
 
 class HomeController extends Controller
 {
@@ -23,6 +23,13 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $user = \Auth::User();
+        $valid_dovu_token = (new DovuAuthorizationService())->validateToken($user);
+
+        if ($valid_dovu_token) {
+            return redirect('/issue/create');
+        }
+
         return view('home');
     }
 }

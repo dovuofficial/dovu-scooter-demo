@@ -2,41 +2,40 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\DovuAuthorizationService;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
-use Session;
 
 class DovuController extends Controller
 {
 
-    public function wallet() {
-        // Build the query parameter string to pass auth information to our request
-        $query = http_build_query([
-            'client_id' => env('DOVU_API_CLIENT_ID'),
-            'redirect_uri' => env('APP_URL') . '/callback',
-            'response_type' => 'code',
-            'scope' => 'reward'
-        ]);
+    private $dovu_service;
 
-        // Redirect the user to the OAuth authorization page
-        return redirect(env('DOVU_API_URL') . '/oauth/authorize?' . $query);
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->dovu_service = new DovuAuthorizationService();
     }
 
-    public function callback (Request $request) {
-        $http = new Client;
+    public function wallet()
+    {
+        $authentication_link = $this->dovu_service->generateAuthenticationRequest();
 
-        $response = $http->post(env('DOVU_API_URL') . '/oauth/token', [
-            'form_params' => [
-                'grant_type' => 'authorization_code',
-                'client_id' => env('DOVU_API_CLIENT_ID'),
-                'client_secret' => env('DOVU_API_CLIENT_SECRET'),
-                'redirect_uri' => env('APP_URL') . '/callback',
-                'code' => $request->code // Get code from the callback
-            ]
-        ]);
+        return redirect($authentication_link);
+    }
 
-        $token = json_decode((string) $response->getBody(), true)['access_token'];
-        Session::put('access_token', $token);
+    public function callback(Request $request)
+    {
+        $user = \Auth::user();
+        $dovu = $this->dovu_service;
+        $token = $dovu->requestAccessToken($request->code);
+
+        $dovu->createDovuTokenLink($user->id, $token);
+
         return redirect('/issue/create');
     }
 }
