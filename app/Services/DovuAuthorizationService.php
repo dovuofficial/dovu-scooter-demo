@@ -34,7 +34,7 @@ class DovuAuthorizationService {
 
     /**
     * Get an access code after a successful login with the DOVU API
-    * the auth code is used to retrived an access token where the service
+    * the auth code is used to retrieve an access token where the service
     * will have permission to deliver actions based on the proposed scope
     * of the partner app.
     *
