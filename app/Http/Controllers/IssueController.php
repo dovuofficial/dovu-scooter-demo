@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateIssueRequest;
 use Illuminate\Http\Request;
 use App\Issue;
 use GuzzleHttp\Client;
@@ -43,7 +44,7 @@ class IssueController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateIssueRequest $request)
     {
         Issue::create([
             'scooter_id' => $request->scooter_id,
