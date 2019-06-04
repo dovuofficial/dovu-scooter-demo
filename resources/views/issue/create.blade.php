@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="container">
+        @include('flash::message')
         <form method="POST" action="/issue">
             @csrf
             <div class="form-group">

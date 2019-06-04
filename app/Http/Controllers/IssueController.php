@@ -60,7 +60,8 @@ class IssueController extends Controller
                 'amount' => 10
             ]
         ]);
-        return "Thanks";
+        flash('Thanks for submitting an issue. We have sent you a reward!')->important();
+        return view('issue.create');
 
     }
 
