@@ -2,6 +2,11 @@
 
 @section('content')
 <div class="container">
+    <div class="row">
+        <div class="col">
+            <p>We’re an imaginary intelligent mobility company making waves on the streets of San Francisco, Barcelona, Tel Aviv and Swindon. Sign up now to access our scooters, bikes and buggies:</p>
+        </div>
+    </div>
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
