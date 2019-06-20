@@ -12,6 +12,7 @@
     <hr>
 
     @if($valid_dovu_token)
+        <p>Earn DOVU:</p>
         <a
         role="button"
         class="btn btn-primary"
@@ -19,6 +20,7 @@
         Survey
         </a>
         <hr>
+        <p>Spend DOVU</p>
         <a
         role="button"
         class="btn btn-primary"
