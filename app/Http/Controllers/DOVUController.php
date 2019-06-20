@@ -36,6 +36,6 @@ class DovuController extends Controller
 
         $dovu->createDovuTokenLink($user->id, $token);
 
-        return redirect('/issue/create');
+        return redirect('/home');
     }
 }

@@ -26,10 +26,6 @@ class HomeController extends Controller
         $user = \Auth::User();
         $valid_dovu_token = (new DovuAuthorizationService())->validateToken($user);
 
-        if ($valid_dovu_token) {
-            return redirect('/issue/create');
-        }
-
-        return view('home');
+        return view('home', ['valid_dovu_token' => $valid_dovu_token]);
     }
 }
