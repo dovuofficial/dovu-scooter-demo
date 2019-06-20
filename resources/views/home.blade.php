@@ -23,7 +23,7 @@
         <p>Spend DOVU</p>
         <a
         role="button"
-        class="btn btn-primary"
+        class="btn btn-primary disabled"
         href="/marketplace">
         Marketplace
         </a>
