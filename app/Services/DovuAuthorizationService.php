@@ -70,8 +70,6 @@ class DovuAuthorizationService {
     **/
     public function createDovuTokenLink(string $user_id, string $token)
     {
-        // error_log($token);
-
         return DovuToken::updateOrCreate(
             [ 'user_id' => $user_id ],
             [ 'token' => $token ]
