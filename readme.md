@@ -35,6 +35,8 @@ This is our [API documentation](https://developer.dovu.dev/?version=latest) alth
 
 You should now be able to create scooter users and link a DOVU user, when a user from scooter submits an issue the respective
 
+# Experimenting with the sandbox API
+
 Inside of the codebase take a particular look at these files to get a deeper understanding of the process and how users are rewarded with tokens.
 
 - [config/dovu.php](https://github.com/dovuofficial/scooter/blob/master/config/dovu.php)
