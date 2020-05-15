@@ -33,7 +33,7 @@ This is our [API documentation](https://developer.dovu.dev/?version=latest) alth
 	2b. Update **DOVU_API_CLIENT_SECRET=** with the **Secret**.
 3. Restart the local **Scooter** app with **cmd + c** and rerun ``make start``.
 
-You should now be able to create scooter users and link a DOVU user, when a user from scooter submits an issue the respective
+You should now be able to create scooter users and link a DOVU user, when a user from scooter submits an issue the respective DOVU user will receive an award of **0.01 DOV**.
 
 # Experimenting with the sandbox API
 
