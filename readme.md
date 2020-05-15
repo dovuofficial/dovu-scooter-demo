@@ -35,7 +35,9 @@ This is our [API documentation](https://developer.dovu.dev/?version=latest) alth
 
 You should now be able to create scooter users and link a DOVU user, when a user from scooter submits an issue the respective DOVU user will receive an award of **0.01 DOV**.
 
-# Experimenting with the sandbox API
+If you have an Android device you can download a [DOVU Testnet Version](https://dovu.io/app/testnet/DOVU_Testnet_0.6.2.apk) of the app, log in and see the notifications come in when the DOVU user is rewarded.
+
+# Experimenting with the testnet API
 
 Inside of the codebase take a particular look at these files to get a deeper understanding of the process and how users are rewarded with tokens.
 
