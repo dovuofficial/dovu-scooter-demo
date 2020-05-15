@@ -18,7 +18,9 @@ At a high level the API has two approaches:
 
 An example for the crypto community would be to create an **offer** to offset the carbon of a [single Bitcoin transaction](https://digiconomist.net/bitcoin-energy-consumption).
 
-By tracking the transactions from the submitted Bitcoin address of your user, you may automatically **redeem** the **offer** through your users, therefore automatically offsetting every bitcoin transaction for a user.
+By tracking the transactions from the submitted Bitcoin address of your user, you may automatically **redeem** the **offer** through your users, therefore automatically offsetting every bitcoin transaction for a user. 
+
+If a users balance becomes too low to make the payment then you could send out emails or notifications from your service to warn them of the issue.
 
 If the rate of Bitcoin transactions reduced over time that might be an indication that your user has taken positive action in changing their behaviour, which may warrant a **reward** in DOV.
 
