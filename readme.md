@@ -1,69 +1,49 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+# DOVU API - Scooter Demo App
 
-## About Laravel
+This is Scooter, a demo app based on a boilerplate [Laravel](https://github.com/dovuofficial/scooter/blob/master/laravel.md) project that uses MySQL.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+The goal of this project is to give partners and clients an insight into using the API in a real application, we encourage experimentation to understand the OAuth process of working and linking of DOVU users with the API.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+This is our [API documentation](https://developer.dovu.dev/?version=latest) although it focuses on our dovu.dev testnet environment the process is the same for our production dovu.earth.
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications.
+# Get Started
 
-## Learning Laravel
+## Become a Partner
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of any modern web application framework, making it a breeze to get started learning the framework.
+1. Create a wallet account on [dovu.dev](https://dovu.dev)
+2. Request **partner** access from our support team, see the [documentation](https://developer.dovu.dev/?version=latest).
+3. When **partner** access has been granted check the footer of [dovu.dev](https://dovu.dev) and you should see a new [**CLIENT APPS**](https://dovu.dev/client-app) link this will allow you create new client applications.
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+## Start with Scooter
 
-## Laravel Sponsors
+1. Clone the repo.
+2. Run `make create` to install all of the dependices for the project and migrate the database.
+	2a. You may have to manually add a **dovu_scooter** db
+	2b. The generated **DB_USERNAME** is **forge**, update the db credentials as required.
+3. Run `make start` to serve the app
+4. On a separate terminal tab run `make expose` to get a external endpoint to the app.
 
-We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell):
+## Create a DOVU Client App for scooter
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
+1. From the [Client Apps](https://dovu.dev/client-app) page click **Create New Client** add a name and redirect URI, then click **Create**.
+	1a. The redirect URI will be the exposed endpoint appended with **/callback** see the [web routes file](https://github.com/dovuofficial/scooter/blob/master/routes/web.php).
+2.  With the newly generated client inside of **OAuth Clients** copy the **Client ID** and **Secret** into the **.env** of your **Scooter** app.
+	2a. Update **DOVU_API_CLIENT_ID=** with the **Client ID**.
+	2b. Update **DOVU_API_CLIENT_SECRET=** with the **Secret**.
+3. Restart the local **Scooter** app with **cmd + c** and rerun ``make start``.
 
-## Contributing
+You should now be able to create scooter users and link a DOVU user, when a user from scooter submits an issue the respective
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Inside of the codebase take a particular look at these files to get a deeper understanding of the process and how users are rewarded with tokens.
 
-## Security Vulnerabilities
+- [config/dovu.php](https://github.com/dovuofficial/scooter/blob/master/config/dovu.php)
+- [app/Services/DovuAuthorizationService](https://github.com/dovuofficial/scooter/blob/master/app/Services/DovuAuthorizationService.php)
+- [app/Controllers/DovuController](https://github.com/dovuofficial/scooter/blob/master/app/Http/Controllers/DOVUController.php)
+- [app/Controllers/IssueController](https://github.com/dovuofficial/scooter/blob/master/app/Http/Controllers/IssueController.php)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+It is easier to navigate the structure of the database if you are using a MySQL client such as [SequelPro](https://www.sequelpro.com/)
 
-## License
+Use the **Scooter** test project within **dovu.dev** as a sandbox to experiment with the DOVU API.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+When you are ready to start working with real tokens on production let us know.
