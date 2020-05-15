@@ -36,18 +36,18 @@ If the rate of Bitcoin transactions reduced over time that might be an indicatio
 
 1. Clone the repo.
 2. Run `make create` to install all of the dependices for the project and migrate the database.
-	-- You may have to manually add a **dovu_scooter** db
-	-- The generated **DB_USERNAME** is **forge**, update the db credentials as required.
+    2a. You may have to manually add a **dovu_scooter** db
+    2b. The generated **DB_USERNAME** is **forge**, update the db credentials as required.
 3. Run `make start` to serve the app
 4. On a separate terminal tab run `make expose` to get a external endpoint to the app.
 
 ## Create a DOVU Client App for scooter
 
 1. From the [Client Apps](https://dovu.dev/client-app) page click **Create New Client** add a name and redirect URI, then click **Create**.
-	-- The redirect URI will be the exposed endpoint appended with **/callback** see the [web routes file](https://github.com/dovuofficial/scooter/blob/master/routes/web.php).
+    1a. The redirect URI will be the exposed endpoint appended with **/callback** see the [web routes file](https://github.com/dovuofficial/scooter/blob/master/routes/web.php).
 2.  With the newly generated client inside of **OAuth Clients** copy the **Client ID** and **Secret** into the **.env** of your **Scooter** app.
-	-- Update **DOVU_API_CLIENT_ID=** with the **Client ID**.
-	-- Update **DOVU_API_CLIENT_SECRET=** with the **Secret**.
+    2a. Update **DOVU_API_CLIENT_ID=** with the **Client ID**.
+    2b. Update **DOVU_API_CLIENT_SECRET=** with the **Secret**.
 3. Restart the local **Scooter** app with **cmd + c** and rerun ``make start``.
 
 You should now be able to create scooter users and link a DOVU user, when a user from scooter submits an issue the respective DOVU user will receive an award of **0.01 DOV**.
