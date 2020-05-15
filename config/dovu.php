@@ -45,7 +45,11 @@ return [
     |   - Notifications (in-development) allows app to send notifications to the wallet
     */
 
-    'app_scopes' => env('DOVU_API_CLIENT_SCOPES', 'reward'),
+    // Locked down scopes for the scooter demo project
+    // 'app_scopes' => env('DOVU_API_CLIENT_SCOPES', ['reward']),
+
+    // Use these scopes for giving a user the ability to redeem as well as be rewarded
+    'app_scopes' => env('DOVU_API_CLIENT_SCOPES', ['redeem', 'reward']),
 
     /*
     |--------------------------------------------------------------------------
