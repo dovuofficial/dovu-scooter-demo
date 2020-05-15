@@ -7,6 +7,21 @@ The goal of this project is to give partners and clients an insight into using t
 
 This is our [API documentation](https://developer.dovu.dev/?version=latest) although it focuses on our dovu.dev testnet environment the process is the same for our production dovu.earth.
 
+# The DOVU API
+
+At a high level the API has two approaches:
+
+1. Create offers that can be redeemed with DOV tokens which help to offset carbon.
+2. Create behavioural triggers for when a user has completed a task to reward them with DOV tokens.
+
+## An example to offset the carbon from Bitcoin transactions
+
+An example for the crypto community would be to create an **offer** to offset the carbon of a [single Bitcoin transaction](https://digiconomist.net/bitcoin-energy-consumption).
+
+By tracking the transactions from the submitted Bitcoin address of your user, you may automatically **redeem** the **offer** through your users, therefore automatically offsetting every bitcoin transaction for a user.
+
+If the rate of Bitcoin transactions reduced over time that might be an indication that your user has taken positive action in changing their behaviour, which may warrant a **reward** in DOV.
+
 # Get Started
 
 ## Become a Partner
@@ -49,5 +64,7 @@ Inside of the codebase take a particular look at these files to get a deeper und
 It is easier to navigate the structure of the database if you are using a MySQL client such as [SequelPro](https://www.sequelpro.com/)
 
 Use the **Scooter** test project within **dovu.dev** as a sandbox to experiment with the DOVU API.
+
+You may also create new redeemable offers which your users may purchase as a method of offsetting carbon using DOV tokens.
 
 When you are ready to start working with real tokens on production let us know.
