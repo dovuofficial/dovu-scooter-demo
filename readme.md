@@ -52,7 +52,7 @@ If the rate of Bitcoin transactions reduced over time that might be an indicatio
 
 You should now be able to create scooter users and link a DOVU user, when a user from scooter submits an issue the respective DOVU user will receive an award of **0.01 DOV**.
 
-If you have an Android device you can download a [DOVU Testnet Version](https://dovu.io/app/testnet/DOVU_Testnet_0.6.2.apk) of the app, log in and see the notifications come in when the DOVU user is rewarded.
+If you have an Android device you can download a [DOVU Testnet Version](https://dovu.io/app/testnet/DOVU_Dev_Release.apk) of the app, log in and see the notifications come in when the DOVU user is rewarded.
 
 # Experimenting with the testnet API
 
